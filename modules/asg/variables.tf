@@ -1,6 +1,27 @@
 # modules/asg/variables.tf
 # Complex object types with validation and optional attributes
 
+variable "application_name" {
+  description = "Name of the application"
+  type        = string
+}
+
+variable "environment" {
+  description = "Environment name (dev, staging, prod)"
+  type        = string
+  
+  validation {
+    condition     = contains(["dev", "staging", "prod"], var.environment)
+    error_message = "Environment must be one of: dev, staging, prod."
+  }
+}
+
+variable "common_tags" {
+  description = "Common tags to apply to all resources"
+  type        = map(string)
+  default     = {}
+}
+
 variable "asg_configurations" {
   description = "Map of ASG configurations for different tiers"
   type = map(object({
@@ -98,25 +119,4 @@ variable "asg_configurations" {
     ])
     error_message = "Health check type must be either 'EC2' or 'ELB'."
   }
-}
-
-variable "common_tags" {
-  description = "Common tags to apply to all resources"
-  type        = map(string)
-  default     = {}
-}
-
-variable "environment" {
-  description = "Environment name (dev, staging, prod)"
-  type        = string
-  
-  validation {
-    condition     = contains(["dev", "staging", "prod"], var.environment)
-    error_message = "Environment must be one of: dev, staging, prod."
-  }
-}
-
-variable "application_name" {
-  description = "Name of the application"
-  type        = string
 }
