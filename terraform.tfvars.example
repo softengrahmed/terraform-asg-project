@@ -1,0 +1,61 @@
+# terraform.tfvars.example
+# Copy this file to terraform.tfvars and modify with your actual values
+
+# AWS Configuration
+aws_region = "us-west-2"
+
+# Application Configuration
+application_name = "myapp"
+environment      = "dev"
+
+# Infrastructure Configuration
+vpc_name      = "main-vpc"
+key_pair_name = "my-key-pair"  # Optional: Set to null if you don't want SSH access
+
+# Common Tags Applied to All Resources
+common_tags = {
+  Project      = "MultiTierApplication"
+  Environment  = "Development"
+  ManagedBy    = "Terraform"
+  Owner        = "DevOps Team"
+  CostCenter   = "Engineering"
+  Department   = "IT"
+  Application  = "WebApp"
+  BackupPolicy = "Daily"
+}
+
+# Examples for different environments:
+
+# Development Environment
+# aws_region       = "us-west-2"
+# application_name = "myapp"
+# environment      = "dev"
+# common_tags = {
+#   Project     = "MyProject"
+#   Environment = "Development"
+#   ManagedBy   = "Terraform"
+#   Owner       = "Dev Team"
+# }
+
+# Staging Environment
+# aws_region       = "us-east-1"
+# application_name = "myapp"
+# environment      = "staging"
+# common_tags = {
+#   Project     = "MyProject"
+#   Environment = "Staging"
+#   ManagedBy   = "Terraform"
+#   Owner       = "QA Team"
+# }
+
+# Production Environment
+# aws_region       = "us-east-1"
+# application_name = "myapp"
+# environment      = "prod"
+# common_tags = {
+#   Project     = "MyProject"
+#   Environment = "Production"
+#   ManagedBy   = "Terraform"
+#   Owner       = "Operations Team"
+#   Critical    = "true"
+# }
